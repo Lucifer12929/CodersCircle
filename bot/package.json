@@ -1,0 +1,19 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "description": "Bot to scrap top blogs post",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "bot": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "mongoose": "^6.9.2",
+    "playwright": "^1.30.0"
+  }
+}

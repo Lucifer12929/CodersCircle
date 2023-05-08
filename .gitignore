@@ -1,0 +1,10 @@
+/server/config
+/server/node_modules
+/server/yarn.lock
+
+/client/dist
+
+/bot/.env
+/bot/config
+/bot/node_modules
+/bot/yarn.lock

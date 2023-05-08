@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  font-family: "Poppins", sans-serif;
+}
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  margin-left: 18px;
+  border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb {
+  /* background: var(--sec-bg); */
+  background-color: #cccccc68;
+  border-radius: 10px;
+}
+
+:root {
+  --primary: #00ba7c;
+  --light-primary: #16e9a2;
+  --text: #f7f9f9;
+  --light-text: #5b6773;
+  --hover: #1c2732;
+  --overlay: #2c3640;
+  --bg: #15202b;
+  --border: #505f6db6;
+  --gradient-start: #121317;
+  --gradient-start-text: "#121317";
+  --gradient-end: #323b42;
+  --gradient-end-text: "#323B42";
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(
+    33deg,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  -webkit-appearance: button;
+  text-transform: none;
+  cursor: pointer;
+}
+
+.layout_container {
+  display: grid;
+  grid-template-columns: 25% 40% 35%;
+  grid-template-rows: 100%;
+  grid-template-areas: "left main right";
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+.main_container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: linear-gradient(
+    33deg,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.main_container::-webkit-scrollbar {
+  display: none;
+}
+
+/*for img load*/
+.loading_img {
+  filter: blur(10px);
+  clip-path: inset(0);
+}
+
+.loaded_img {
+  filter: blur(0px);
+  transition: filter 0.5s linear;
+}
+
+/* code mirror css */
+.CodeMirror {
+  height: auto;
+  font-size: 15px;
+
+  padding-bottom: 5px;
+  padding-top: 5px;
+
+  cursor: auto;
+  font-family: "Fira Code", monospace;
+  font-weight: 400 !important;
+  border-radius: 5px;
+  min-width: 100%;
+  width: 100%;
+}
+
+/* .CodeMirror-scroll {
+  border: 2px solid red;
+  min-width: 100%;
+  width: 100%;
+
+  overflow-y: hidden;
+  overflow-x: auto;
+} */
+
+/* Media Query */
+
+@media screen and (max-width: 1401px) {
+  .layout_container {
+    display: grid;
+    grid-template-columns: 100% 0% 0%;
+    grid-template-rows: 100%;
+    grid-template-areas: "left main right";
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+  }
+}

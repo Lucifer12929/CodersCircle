@@ -1,0 +1,7 @@
+.jobTop {
+  /* border-bottom: 2px solid var(--light-text) !important; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
