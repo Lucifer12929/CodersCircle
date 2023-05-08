@@ -22,7 +22,7 @@ const Auth = () => {
 
   const navigate = useNavigate();
   const clientId =
-    "506068898694-pijqrj5qunkr9i0cqv7mvupo7b4c9f4u.apps.googleusercontent.com";
+    "506068898694-9t5sg16fmso9m1cmc2lvj11dltlejuso.apps.googleusercontent.com";
   useEffect(() => {
     function start() {
       gapi.client.init({
