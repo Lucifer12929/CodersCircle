@@ -1,6 +1,6 @@
 // create axios instance
 import axios from "axios";
-const apiurl = "http://localhost:8000/api";
+const apiurl = "https://coderscircle.onrender.com/api";
 const provider = axios.create({
   baseURL: apiurl,
 });
