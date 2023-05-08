@@ -35,13 +35,14 @@ app.use("/api/bot", botRoutes);
 //     res.sendFile("/root/CodersCircle/client/public/index.html"); // absolute path configured for server
 //   });
 // }
+const __dirname = path.resolve();
+console.log(__dirname);
 
 if (process.env.NODE_ENV === "production") {
-  //Set static folder
-  app.use(express.static("../client/public"));
-  app.get("*", (req, res) => {
-    res.sendFile("/Project/CodersCircle-main/client/public/index.html"); // absolute path configured for server
-  });
+  app.use(express.static(path.join(__dirname, "/client/build")));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
 } else {
   app.get("/", (req, res) => {
     res.send("API is Runn....");
