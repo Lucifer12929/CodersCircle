@@ -44,7 +44,9 @@ const Other = () => {
             trends.topTrends?.map((trend) => (
               <div className={styles.trend}>
                 <span className={styles.trend_name}>{trend.trend}</span>
-                <span className={styles.trend_count}>{trend.count} devits</span>
+                <span className={styles.trend_count}>
+                  {trend.count} hastags
+                </span>
               </div>
             ))
           ) : (
