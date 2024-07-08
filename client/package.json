@@ -2,7 +2,7 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
-  "proxy": "http://localhost:8000",
+  "proxy": "https://backendcoders.onrender.com",
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",
