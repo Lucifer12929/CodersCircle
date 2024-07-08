@@ -16,7 +16,7 @@ import internshipdata from "../data/internship";
 
 const ApiRevoke = () => {
   // const axios = require("axios");
-  const [trigger, setTrigger] = useState(true);
+  const [trigger, setTrigger] = useState(false);
   return (
     <div className={style.header_api}>
       <div className={style.top}>
@@ -28,7 +28,7 @@ const ApiRevoke = () => {
             onClick={() => setTrigger(!trigger)}
           ></input>
           <label className={style.switch_button_label} for="">
-            <span className={style.switch_button_label_span}>Internship</span>
+            <span className={style.switch_button_label_span}>Jobs</span>
           </label>
         </div>
       </div>

@@ -57,7 +57,13 @@ const Sidebar = () => {
       link: "/profile",
     },
   ];
-  const name = user?.firstname + " " + user?.lastname;
+  const name =
+    (user?.firstname
+      ? user?.firstname.charAt(0).toUpperCase() + user?.firstname.slice(1) + " "
+      : "") +
+    (user?.lastname
+      ? user?.lastname?.charAt(0).toUpperCase() + user?.lastname?.slice(1)
+      : "");
   return (
     <>
       <div className={styles.sidebar_container}>
@@ -122,7 +128,10 @@ const Sidebar = () => {
             </div>
             <div className={styles.name_con}>
               <div className={styles.name}>{name}</div>
-              <div className={styles.username}>@{user?.username}</div>
+              <div className={styles.username}>
+                {" "}
+                {user?.username ? `@${user?.username}` : ""}
+              </div>
             </div>
           </div>
         </div>

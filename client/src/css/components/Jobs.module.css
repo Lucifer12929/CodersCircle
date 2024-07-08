@@ -32,22 +32,22 @@
   background: #cccccc68;
   border-radius: 30px;
   overflow: hidden;
-  width: 180px;
+  width: 140px;
   text-align: center;
   font-size: 12px;
   /* letter-spacing: 1px; */
   color: #fff;
   position: relative;
-  padding-right: 60px;
+  padding-right: 70px;
   position: relative;
 }
 .switch_button:before {
-  content: "Jobs";
+  content: "Internship";
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
-  width: 50px;
+  width: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,7 +66,7 @@
   z-index: 2;
 }
 .switch_button_checkbox:checked + .switch_button_label:before {
-  transform: translateX(100px);
+  transform: translateX(70px);
   transition: transform 300ms linear;
 }
 .switch_button_checkbox + .switch_button_label {

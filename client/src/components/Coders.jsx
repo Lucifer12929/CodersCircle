@@ -78,8 +78,9 @@ function Coders() {
     const [file] = e.target.files;
     setImg(URL.createObjectURL(file));
     setfile(e.target.files[0]);
+    alert("Image Uploading is in Development");
   };
-
+  console.log(user);
   const handleDevit = async () => {
     if (value.content === "" && value.code === "") {
       toast.error("Please enter some content");
@@ -107,11 +108,15 @@ function Coders() {
             code: value.code,
             image: imgRes.data.url,
             name:
-              user?.firstname.charAt(0).toUpperCase() +
-              user?.firstname.slice(1) +
-              " " +
-              user?.lastname.charAt(0).toUpperCase() +
-              user?.lastname.slice(1),
+              (user?.firstname
+                ? user?.firstname.charAt(0).toUpperCase() +
+                  user?.firstname.slice(1) +
+                  " "
+                : "") +
+              (user?.lastname
+                ? user?.lastname?.charAt(0).toUpperCase() +
+                  user?.lastname?.slice(1)
+                : ""),
 
             username: user?.username,
             avatar: user?.avatar,
@@ -132,17 +137,21 @@ function Coders() {
           }
         }
       }
+
       const res = await provider.post("/devit/post", {
         userid: user?._id,
         content: value.content,
         code: value.code,
         image: "",
         name:
-          user?.firstname.charAt(0).toUpperCase() +
-          user?.firstname.slice(1) +
-          " " +
-          user?.lastname.charAt(0).toUpperCase() +
-          user?.lastname.slice(1),
+          (user?.firstname
+            ? user?.firstname.charAt(0).toUpperCase() +
+              user?.firstname.slice(1) +
+              " "
+            : "") +
+          (user?.lastname
+            ? user?.lastname?.charAt(0).toUpperCase() + user?.lastname?.slice(1)
+            : ""),
 
         username: user?.username,
         avatar: user?.avatar,

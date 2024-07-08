@@ -8,3 +8,4 @@
 /bot/config
 /bot/node_modules
 /bot/yarn.lock
+node_modules

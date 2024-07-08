@@ -118,6 +118,7 @@ const Post = ({ data }) => {
   };
 
   const goLink = `/devit/${data?._id}`;
+  console.log(data);
 
   return (
     <>

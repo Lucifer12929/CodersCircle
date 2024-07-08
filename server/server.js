@@ -17,6 +17,11 @@ const app = express();
 
 app.use(express.json()); // handle json data
 app.use(cors()); //allow cors
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  next();
+});
 connectDB(); // connect to db
 app.use(fileupload()); // file upload
 app.use("/uploads", express.static("uploads")); // for serving static files

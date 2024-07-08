@@ -8,9 +8,15 @@ const ProfileHeader = () => {
   const navigate = useNavigate();
   const { userDetails } = useContext(ContextProvider);
   const [user, setuser] = userDetails;
-  console.log("$$", user);
+
   // generate name from firstname and lastname
-  const name = user?.firstname + " " + user?.lastname;
+  const name =
+    (user?.firstname
+      ? user?.firstname.charAt(0).toUpperCase() + user?.firstname.slice(1) + " "
+      : "") +
+    (user?.lastname
+      ? user?.lastname?.charAt(0).toUpperCase() + user?.lastname?.slice(1)
+      : "");
 
   return (
     <>
@@ -19,7 +25,9 @@ const ProfileHeader = () => {
         <div className={style.profile_details}>
           <img src={user?.avatar} alt="profile_pic" />
           <h3>{name}</h3>
-          <p className={style.username}>@{user?.username}</p>
+          <p className={style.username}>
+            {user?.username ? `@${user?.username}` : ""}
+          </p>
           <p className={style.bio}>{user?.bio}</p>
           <div className={style.button_con}>
             <Button
