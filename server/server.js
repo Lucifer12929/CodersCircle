@@ -22,6 +22,13 @@ app.use((req, res, next) => {
   res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
   next();
 });
+app.use(
+  cors({
+    origin: "https://coders-circle.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 connectDB(); // connect to db
 app.use(fileupload()); // file upload
 app.use("/uploads", express.static("uploads")); // for serving static files
