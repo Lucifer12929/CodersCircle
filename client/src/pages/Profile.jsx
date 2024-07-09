@@ -29,9 +29,26 @@ const Profile = () => {
           marginTop: "-20px",
         }}
       >
-        {mydevits?.map((data) => (
-          <Post key={data._id} data={data} />
-        ))}
+        {mydevits.length < 1 ? (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+              // marginLeft: "40%",
+              marginTop: "10%",
+            }}
+          >
+            Your Posts
+          </div>
+        ) : (
+          <>
+            {mydevits?.map((data) => (
+              <Post key={data._id} data={data} />
+            ))}
+          </>
+        )}
       </div>
     </>
   );
