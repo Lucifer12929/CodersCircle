@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import style from "../css/pages/login.module.css";
 import { Button } from "@pankod/refine-mui";
 import provider from "../config/axios.js";
-
-//login imports
 import { useGoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { Navigate, useNavigate } from "@pankod/refine-react-router-v6";
@@ -21,10 +19,17 @@ const Auth = () => {
     }
 
     function start() {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "email",
-      });
+      gapi.client
+        .init({
+          clientId: clientId,
+          scope: "email",
+        })
+        .then(() => {
+          console.log("GAPI client initialized");
+        })
+        .catch((err) => {
+          console.error("Error initializing GAPI client:", err);
+        });
     }
     gapi.load("client:auth2", start);
   }, [token, clientId]);
@@ -60,7 +65,10 @@ const Auth = () => {
         window.location.href = "/app";
       }
     } catch (error) {
-      console.error("Authentication error:", error);
+      console.error(
+        "Authentication error:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
 
