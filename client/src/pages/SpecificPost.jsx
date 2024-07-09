@@ -47,7 +47,15 @@ const SpecificPost = () => {
       const res = await provider.post(`/devit/comment/${id}`, {
         userid: user?._id,
         username: user?.username,
-        name: user?.firstname + " " + user?.lastname,
+        name:
+          (user?.firstname
+            ? user?.firstname.charAt(0).toUpperCase() +
+              user?.firstname.slice(1) +
+              " "
+            : "") +
+          (user?.lastname
+            ? user?.lastname?.charAt(0).toUpperCase() + user?.lastname?.slice(1)
+            : ""),
         content: comment,
         timestamp: Date.now(),
         avatar: user?.avatar,
