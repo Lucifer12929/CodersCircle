@@ -80,7 +80,7 @@ function Coders() {
     setfile(e.target.files[0]);
     alert("Image Uploading is in Development");
   };
-  console.log(user);
+
   const handleDevit = async () => {
     if (value.content === "" && value.code === "") {
       toast.error("Please enter some content");
