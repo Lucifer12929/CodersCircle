@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "../css/pages/login.module.css";
 import { Button } from "@pankod/refine-mui";
 import provider from "../config/axios.js";
@@ -6,8 +6,10 @@ import { useGoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { Navigate, useNavigate } from "@pankod/refine-react-router-v6";
 import logo from "../images/logo.png";
+import LoginLoader from "../components/LoginLoader.jsx";
 
 const Auth = () => {
+  const [loading, setLoading] = useState(false); // State for tracking loading
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const clientId =
@@ -35,6 +37,7 @@ const Auth = () => {
   }, [token, clientId]);
 
   const onFailure = (err) => {
+    setLoading(false);
     if (err.details === "Cookies are not enabled in current environment.") {
       alert("Please enable cookies");
     } else {
@@ -43,6 +46,7 @@ const Auth = () => {
   };
 
   const onSuccess = async (data) => {
+    setLoading(true);
     const { profileObj } = data;
     const { email, givenName, familyName, imageUrl } = profileObj;
 
@@ -56,15 +60,18 @@ const Auth = () => {
 
       if (res.status === 201) {
         alert("Please complete your profile");
+        setLoading(false);
         navigate("/complete/" + res.data.userId, {
           state: { email, givenName, familyName, imageUrl },
         });
       } else if (res.status === 200) {
         localStorage.setItem("token", res.data.userId);
         alert("You are logged in");
+        setLoading(false);
         window.location.href = "/app";
       }
     } catch (error) {
+      setLoading(false);
       console.error(
         "Authentication error:",
         error.response ? error.response.data : error.message
@@ -81,6 +88,7 @@ const Auth = () => {
 
   return (
     <div className={style.container}>
+      {loading && <LoginLoader />}
       <div className={style.left}>
         <header>
           <div className={style.logo_wrapper}>
@@ -91,7 +99,10 @@ const Auth = () => {
         </header>
         <form className={style.form_auth}>
           <Button
-            onClick={signIn}
+            onClick={() => {
+              setLoading(true);
+              signIn();
+            }}
             className={style.googleBth}
             sx={{
               color: "#CCCCCC",
