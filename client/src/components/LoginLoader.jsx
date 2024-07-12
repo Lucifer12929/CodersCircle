@@ -11,7 +11,13 @@ const LoginLoader = () => {
         <div class={styles.pencil__eraser}></div>
       </div>
       <div class={styles.line}></div>
-      <h2>Login in Progress...</h2>
+      <h2>
+        If the Google login popup does not appear, kindly refresh the page and
+        attempt to sign in again.
+        <br /> Otherwise, please wait as we complete the login process. <br />{" "}
+        <br />
+        Thank you for your patience.
+      </h2>
     </div>
   );
 };
