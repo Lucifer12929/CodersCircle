@@ -1,41 +1,41 @@
 import React, { useEffect, useState } from "react";
 import style from "../css/pages/Datacollection.module.css";
-import { BsArrowRight, BsMicFill, BsFillBookFill } from "react-icons/bs";
-import { Button } from "@pankod/refine-mui";
-import { TextField } from "@pankod/refine-mui";
+import { BsArrowRight } from "react-icons/bs";
+import { Button, TextField } from "@pankod/refine-mui";
 import { NavLink } from "@pankod/refine-react-router-v6";
 import { useParams, useLocation } from "@pankod/refine-react-router-v6";
 import provider from "../config/axios.js";
+
 const DataCollection = () => {
-  let token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     if (token) {
       window.location.href = "/app";
     }
   }, [token]);
-  // useloaction
+
   const { state } = useLocation();
-  const { res } = state;
+  const { res } = state || {}; // Safely destructure with fallback to an empty object
   const { id } = useParams();
-  // handle local state
-  const [details, setdetails] = useState({
-    firstname: res.givenName,
-    lastname: res.familyName,
+
+  const [details, setDetails] = useState({
+    firstname: res?.givenName || "",
+    lastname: res?.familyName || "",
     bio: "I am full stack developer.",
     username: "",
-    email: res.email,
+    email: res?.email || "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setdetails({ ...details, [name]: value });
+    setDetails({ ...details, [name]: value });
   };
 
-  // generare unique username based on firstname and lastname
   useEffect(() => {
     const username =
       details?.firstname.toLowerCase() + "_" + details?.lastname.toLowerCase();
-    setdetails({ ...details, username });
+    setDetails({ ...details, username });
   }, [details.firstname, details.lastname]);
 
   const handleSubmit = async (e) => {
@@ -62,18 +62,19 @@ const DataCollection = () => {
           <span>Complete your profile!</span>
           <img
             className={style.complete_profile_img}
-            src={res.imageUrl}
+            src={
+              res?.imageUrl ||
+              "https://cdn0.iconfinder.com/data/icons/online-shop-equitment-gliph/32/line-2_on_going_logo-02-512.png"
+            }
             alt="profile"
           />
         </header>
         <form className={style.from_data_collection}>
-          {/* username feild */}
           <TextField
             name={"username"}
             onChange={handleChange}
             value={details.username}
             className={style.common}
-            defaultValue={"rajeshkhadka200"}
             InputLabelProps={{
               style: {
                 fontFamily: "Poppins",
@@ -83,7 +84,6 @@ const DataCollection = () => {
             }}
             inputProps={{
               style: {
-                // height: "15px",
                 fontSize: "14px",
                 fontFamily: "Poppins",
                 width: "100%",
@@ -93,9 +93,7 @@ const DataCollection = () => {
             label="Username"
             variant="outlined"
           />
-
           <div className={style.row_send}>
-            {/* first name field */}
             <TextField
               name={"firstname"}
               value={details.firstname}
@@ -109,7 +107,6 @@ const DataCollection = () => {
               }}
               inputProps={{
                 style: {
-                  // height: "15px",
                   fontSize: "14px",
                   fontFamily: "Poppins",
                 },
@@ -121,8 +118,6 @@ const DataCollection = () => {
               label="First Name"
               variant="outlined"
             />
-
-            {/* last name field */}
             <TextField
               name={"lastname"}
               onChange={handleChange}
@@ -136,7 +131,6 @@ const DataCollection = () => {
               }}
               inputProps={{
                 style: {
-                  // height: "15px",
                   fontSize: "14px",
                   fontFamily: "Poppins",
                   width: "100%",
@@ -153,7 +147,7 @@ const DataCollection = () => {
           <TextField
             name={"email"}
             onChange={handleChange}
-            value={res.email}
+            value={details.email}
             disabled
             className={style.common}
             InputLabelProps={{
@@ -165,7 +159,6 @@ const DataCollection = () => {
             }}
             inputProps={{
               style: {
-                // height: "15px",
                 fontSize: "14px",
                 fontFamily: "Poppins",
                 width: "100%",
@@ -202,8 +195,9 @@ const DataCollection = () => {
         </form>
         <div className={style.register_btn_con}>
           <Button
-            onClick={handleSubmit}
+            type="submit"
             size="medium"
+            onClick={handleSubmit}
             variant="contained"
             sx={{
               color: "var(--text)",

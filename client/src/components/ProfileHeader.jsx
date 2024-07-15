@@ -23,7 +23,13 @@ const ProfileHeader = () => {
       <header className={style.header_profile}>
         <img className={style.wave} src="/assets/wave.svg" alt="header img" />
         <div className={style.profile_details}>
-          <img src={user?.avatar} alt="profile_pic" />
+          <img
+            src={
+              user?.avatar ||
+              "https://t3.ftcdn.net/jpg/05/99/84/92/360_F_599849226_EZ0hS4kiUVMYMYeNXAtK8BTSmyrM8nG5.jpg"
+            }
+            alt="profile_pic"
+          />
           <h3>{name}</h3>
           <p className={style.username}>
             {user?.username ? `@${user?.username}` : ""}

@@ -121,7 +121,10 @@ const Sidebar = () => {
           <div className={styles.profile_handle}>
             <div className={styles.profile}>
               <img
-                src={user?.avatar}
+                src={
+                  user?.avatar ||
+                  "https://t3.ftcdn.net/jpg/05/99/84/92/360_F_599849226_EZ0hS4kiUVMYMYeNXAtK8BTSmyrM8nG5.jpg"
+                }
                 alt="profile"
                 className={styles.profile_img}
               />

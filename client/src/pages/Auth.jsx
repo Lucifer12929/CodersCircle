@@ -79,6 +79,51 @@ const Auth = () => {
     }
   };
 
+  const signInAsGuest = async () => {
+    setLoading(true);
+    const date = new Date().toISOString();
+    const guestUser = {
+      email: `guest_${date}@guest.com`,
+      firstname: "Guest",
+      lastname: date,
+      avatar: "", // No avatar for guest
+    };
+    function generateGuestInfo(date) {
+      return {
+        email: `guest_${date}@guest.com`,
+        givenName: "Guest",
+        familyName: date,
+        imageUrl:
+          "https://cdn0.iconfinder.com/data/icons/online-shop-equitment-gliph/32/line-2_on_going_logo-02-512.png",
+      };
+    }
+
+    const { email, givenName, familyName, imageUrl } = generateGuestInfo(date);
+    try {
+      const res = await provider.post("/user/auth", guestUser);
+
+      if (res.status === 201) {
+        alert("Please complete your profile");
+        setLoading(false);
+
+        navigate("/complete/" + res.data.userId, {
+          state: { email, givenName, familyName, imageUrl },
+        });
+      } else if (res.status === 200) {
+        localStorage.setItem("token", res.data.userId);
+        alert("You are logged in");
+        setLoading(false);
+        window.location.href = "/app";
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error(
+        "Authentication error:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
+
   const { signIn } = useGoogleLogin({
     onSuccess,
     clientId,
@@ -116,6 +161,22 @@ const Auth = () => {
           >
             <img src="/assets/google-logo.svg" alt="Google Logo" />
             Continue with Google
+          </Button>
+          <Button
+            onClick={() => signInAsGuest()}
+            className={style.guestBtn}
+            sx={{
+              color: "#CCCCCC",
+              fontFamily: "Poppins",
+              textTransform: "capitalize",
+              border: "1px solid #344454",
+              padding: "7px 0",
+              marginTop: "10px", // Add some space between the buttons
+            }}
+            disableElevation
+            variant="outlined"
+          >
+            Sign in as Guest
           </Button>
         </form>
       </div>
