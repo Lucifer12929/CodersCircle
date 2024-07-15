@@ -7,7 +7,7 @@ import provider from "../config/axios";
 
 const Hackathons = () => {
   const [hackathons, setHackathons] = React.useState([]);
-  console.log(hackathons);
+
   const [loading, setLoading] = React.useState(false);
   const [page, setPage] = useState(10);
 

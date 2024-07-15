@@ -6,7 +6,6 @@ import { SiJsonwebtokens } from "react-icons/si";
 import { FiGlobe } from "react-icons/fi";
 
 const HackathonCard = ({ hackathon }) => {
-  console.log(hackathon);
   function removeAbout(text) {
     return text.replace(/^about /i, "");
   }
